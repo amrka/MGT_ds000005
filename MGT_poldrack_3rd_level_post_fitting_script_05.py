@@ -36,12 +36,11 @@ task_list = ['gain','loss']
 
 
 
-contrast_list = ['cope1',
-                'cope2']
+contrast_list = ['zstat1', 'zstat2']
 
                 
-output_dir  = '/Users/amr/Documents/mixed_gambling_poldrack_2007/output_MGT_poldrack_proc_3rd_level_post_fitting'
-working_dir = '/Users/amr/Documents/mixed_gambling_poldrack_2007/workingdir_MGT_poldrack_proc_3rd_level_post_fitting'
+output_dir  = '/Users/amr/Documents/mixed_gambling_poldrack_2007/output_MGT_poldrack_proc_3rd_level_post_fitting_positive_and_negative'
+working_dir = '/Users/amr/Documents/mixed_gambling_poldrack_2007/workingdir_MGT_poldrack_proc_3rd_level_post_fitting_positive_and_negative'
 
 
 proc_3rd_level = Workflow (name = 'proc_3rd_level')
@@ -111,10 +110,10 @@ def smooth_est(contrast):
      smooth_est.inputs.mask_file = standard_mask
 
 
-     if contrast[-53:-49] == 'gain':
-          res4d = '/Users/amr/Documents/mixed_gambling_poldrack_2007/output_MGT_poldrack_proc_3rd_level/gain_stat_flameo/+/res4d.nii.gz'
-     elif contrast[-53:-49] == 'loss':
-          res4d = '/Users/amr/Documents/mixed_gambling_poldrack_2007/output_MGT_poldrack_proc_3rd_level/loss_stat_flameo/+/res4d.nii.gz'
+     if contrast[-54:-50] == 'gain':
+          res4d = '/Users/amr/Documents/mixed_gambling_poldrack_2007/output_MGT_poldrack_proc_3rd_level/gain_stat_flameo_positive_and_negative/+/res4d.nii.gz'
+     elif contrast[-54:-50] == 'loss':
+          res4d = '/Users/amr/Documents/mixed_gambling_poldrack_2007/output_MGT_poldrack_proc_3rd_level/loss_stat_flameo_positive_and_negative/+/res4d.nii.gz'
 
      print(res4d)
 
@@ -185,7 +184,6 @@ slicer_cope.inputs.out_file = 'rendered_thresh_zstat.png'
 
 
 
-
 proc_3rd_level.connect([
 
 
@@ -204,7 +202,7 @@ proc_3rd_level.connect([
               (smooth_est, cluster_copes, [('volume','volume'),
                                            ('dlh','dlh')]),
 
-              (selectfiles, cluster_copes, [('contrast','cope_file')]),
+              # (selectfiles, cluster_copes, [('contrast','cope_file')]),
 
 
               (cluster_copes, overlay_cope, [('threshold_file','stat_image')]),
