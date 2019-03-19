@@ -36,7 +36,8 @@ task_list = ['gain','loss']
 
 
 
-contrast_list = ['cope1']
+contrast_list = ['cope1',
+                'cope2']
 
                 
 output_dir  = '/Users/amr/Documents/mixed_gambling_poldrack_2007/output_MGT_poldrack_proc_3rd_level_post_fitting'
@@ -78,7 +79,7 @@ standard_mask = '/usr/local/fsl/data/standard/MNI152_T1_1mm_brain_mask.nii.gz'
 templates = {
 
 
-          'contrast'           :  '/Users/amr/Documents/mixed_gambling_poldrack_2007/output_MGT_poldrack_proc_3rd_level/{tasks}_stat_flameo/+/{contrasts}.nii.gz',
+          'contrast'           :  '/Users/amr/Documents/mixed_gambling_poldrack_2007/output_MGT_poldrack_proc_3rd_level/{tasks}_stat_flameo_positive_and_negative/+/{contrasts}.nii.gz',
 
         }
 
@@ -110,9 +111,9 @@ def smooth_est(contrast):
      smooth_est.inputs.mask_file = standard_mask
 
 
-     if contrast[-31:-27] == 'gain':
+     if contrast[-53:-49] == 'gain':
           res4d = '/Users/amr/Documents/mixed_gambling_poldrack_2007/output_MGT_poldrack_proc_3rd_level/gain_stat_flameo/+/res4d.nii.gz'
-     elif contrast[-31:-27] == 'loss':
+     elif contrast[-53:-49] == 'loss':
           res4d = '/Users/amr/Documents/mixed_gambling_poldrack_2007/output_MGT_poldrack_proc_3rd_level/loss_stat_flameo/+/res4d.nii.gz'
 
      print(res4d)
@@ -121,7 +122,7 @@ def smooth_est(contrast):
      smooth_est.inputs.residual_fit_file = res4d
      smooth_est_outputs = smooth_est.run()
 
-     print(contrast[-29:-25])
+
      dlh = smooth_est_outputs.outputs.dlh
      volume = smooth_est_outputs.outputs.volume
      resels = smooth_est_outputs.outputs.resels
