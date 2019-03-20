@@ -357,8 +357,9 @@ Intensity_Normalization.inputs.operation = 'mul'
 # In[18]:
 
 #   fslmaths ${folder}_mcf_2highres_intnorm -bptf 25 -1 -add tempMean ${folder}_mcf_2highres_tempfilt;
+# sigma[vol] = filter_width[secs]/(2*TR[secs])
 high_pass_filter = Node(fsl.TemporalFilter(), name = 'high_pass_filter')
-high_pass_filter.inputs.highpass_sigma = 45.0
+high_pass_filter.inputs.highpass_sigma = 22.5 #90s / (2*2(TR))
 #========================================================================================================
 # In[19]
 
