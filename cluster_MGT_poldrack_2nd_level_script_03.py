@@ -129,12 +129,6 @@ substitutions = [('_subject_id_', ''),('_contrast_id_', '')]
 datasink.inputs.substitutions = substitutions
 
 #==========================================================================================================================================================
-#Create a desing for 2snd level
-
-l2model = Node(fsl.model.L2Model(), name='create_2nd_level_desing')
-
-
-#==========================================================================================================================================================
 #Apply transformations to each cope
 
 def copes1_2_anat_func(fixed, cope1_r1, cope1_r2, cope1_r3, func_2_anat_trans_r1, func_2_anat_trans_r2, func_2_anat_trans_r3, mask_brain):
@@ -263,7 +257,7 @@ varcopes1_2_anat_func = Node(name = 'varcopes1_2_anat_func',
 #==========================================================================================================================================================
 
 #==========================================================================================================================================================
-#Create desing
+#Create desing for 2nd level
 create_l2_design = Node(fsl.model.L2Model(), name='create_l2_design')
 create_l2_design.inputs.num_copes = no_runs
 
